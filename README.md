@@ -1,2 +1,2 @@
 # Crybaby
-cryzen.io utility mod
+Utility tool for Vectaria.io
