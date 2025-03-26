@@ -6,6 +6,7 @@ import ClickGUI from "./modules/visual/ClickGUI";
 import AdBypass from "./modules/misc/AdBypass";
 import Chams from "./modules/visual/Chams";
 import Aimbot from "./modules/combat/Aimbot";
+import AntiRecoil from "./modules/combat/AntiRecoil";
 
 export default {
     modules: {},
@@ -36,7 +37,8 @@ export default {
             new ClickGUI(),
             new Chams(),
             new AdBypass(),
-            new Aimbot()
+            new Aimbot(),
+            new AntiRecoil()
         );
 
         events.on("render", () => {

@@ -5,29 +5,11 @@ import mathUtils from "../../../utils/mathUtils";
 export default class Aimbot extends Module {
     constructor() {
         super("Aimbot", "Combat", {
-            "On Aim": "false",
-            "On Shoot": "false"
+            "On Aim": "true",
+            "On Shoot": "true",
+            "Y Offset": 0.5
         });
         this.lastExecutionTime = null;
-
-        this.isLeftClicking = false;
-        this.isRightClicking = false;
-
-        document.addEventListener('mousedown', (event) => {
-            if (event.button === 0) {
-                this.isLeftClicking = true;
-            } else if (event.button === 2) {
-                this.isRightClicking = true;
-            }
-        });
-
-        document.addEventListener('mouseup', (event) => {
-            if (event.button === 0) {
-                this.isLeftClicking = false;
-            } else if (event.button === 2) {
-                this.isRightClicking = false;
-            }
-        });
     }
     
     getClosestEnemy(player, enemies) {
@@ -68,7 +50,7 @@ export default class Aimbot extends Module {
     
             let rotationY = Math.atan2(direction.x, direction.z);
             
-            let headOffset = 0.8;
+            let headOffset = parseFloat(this.options["Y Offset"]);
             let verticalDistance = (enemyPos.y + headOffset) - playerPos.y;
             let horizontalDistance = Math.hypot(direction.x, direction.z);
             let rotationX = Math.atan2(verticalDistance, horizontalDistance);
@@ -84,9 +66,9 @@ export default class Aimbot extends Module {
     onRender () {
         if (!hooks?.stores?.gameState?.gameWorld?.server) return;
 
-        if (this.options["On Aim"] == "true" && this.isRightClicking) {
+        if (this.options["On Aim"] == "true" && hooks.stores.gameState.gameWorld.player.inputs.rightMB) {
             this.aimAtEnemy();
-        } else if (this.options["On Shoot"] == "true" && this.isLeftClicking) {
+        } else if (this.options["On Shoot"] == "true" && hooks.stores.gameState.gameWorld.player.inputs.leftMB) {
             this.aimAtEnemy();
         } else if (this.options["On Shoot"] !== "true" && this.options["On Aim"] !== "true") {
             this.aimAtEnemy();
