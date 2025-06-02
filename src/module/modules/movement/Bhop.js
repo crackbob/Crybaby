@@ -8,7 +8,7 @@ export default class Bhop extends Module {
 
     onRender () {
         if (hooks?.stores?.gameState?.gameWorld?.server) {
-            hooks.stores.gameState.gameWorld.player.inputs.jumpPressed = true;
+            hooks.stores.gameState.gameWorld.player.inputs.jump = true;
             hooks.stores.gameState.gameWorld.player.inputs.jumpPressed = true;
         };
     }
