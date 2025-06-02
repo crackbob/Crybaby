@@ -7,6 +7,8 @@ import AdBypass from "./modules/misc/AdBypass";
 import Chams from "./modules/visual/Chams";
 import Aimbot from "./modules/combat/Aimbot";
 import AntiRecoil from "./modules/combat/AntiRecoil";
+import Speed from "./modules/movement/Speed";
+import Bhop from "./modules/movement/Bhop";
 
 export default {
     modules: {},
@@ -38,7 +40,9 @@ export default {
             new Chams(),
             new AdBypass(),
             new Aimbot(),
-            new AntiRecoil()
+            new AntiRecoil(),
+            new Speed(),
+            new Bhop(),
         );
 
         events.on("render", () => {
